@@ -1,0 +1,44 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
+import de.greenrobot.daogenerator.Entity
+import de.greenrobot.daogenerator.Schema
+import de.greenrobot.daogenerator.DaoGenerator
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha3'
+        //greenDao generator
+        classpath 'de.greenrobot:greendao-generator:2.1.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//greenDao Generate Task
+task greendaoGenerate << {
+    def pack = 'cn.chenzhongjin.greendaogenerator'
+    Schema schema = new Schema(1, "${pack}.entity");
+    schema.defaultJavaPackageDao = "${pack}.database"
+    schema.hasKeepSectionsByDefault = true
+    schema.useActiveEntitiesByDefault = true;
+    Entity user = schema.addEntity("User");
+    user.addIdProperty();
+    user.addStringProperty("name");
+    user.addStringProperty("password");
+
+    new DaoGenerator().generateAll(schema, "app/src/main/java", null, null);
+}
