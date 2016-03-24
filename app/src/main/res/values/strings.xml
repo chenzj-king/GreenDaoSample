@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GreenDaoGenerator</string>
+
+    <string name="main_title">GreenDao Sample</string>
 </resources>

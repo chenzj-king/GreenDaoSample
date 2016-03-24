@@ -1,4 +1,4 @@
-package cn.chenzhongjin.greendaogenerator;
+package cn.chenzhongjin.sample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

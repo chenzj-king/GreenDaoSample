@@ -29,16 +29,17 @@ task clean(type: Delete) {
 }
 
 //greenDao Generate Task
-task greendaoGenerate << {
-    def pack = 'cn.chenzhongjin.greendaogenerator'
-    Schema schema = new Schema(1, "${pack}.entity");
+task daoGenerate << {
+    def pack = 'cn.chenzhongjin.greendao.sample'
+    Schema schema = new Schema(2, "${pack}.entity");//foucuse version for update database
     schema.defaultJavaPackageDao = "${pack}.database"
     schema.hasKeepSectionsByDefault = true
     schema.useActiveEntitiesByDefault = true;
     Entity user = schema.addEntity("User");
     user.addIdProperty();
     user.addStringProperty("name");
-    user.addStringProperty("password");
+    user.addStringProperty("sex");
+    user.addIntProperty("phoneNumber");
 
     new DaoGenerator().generateAll(schema, "app/src/main/java", null, null);
 }

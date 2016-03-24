@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package cn.chenzhongjin.greendaogenerator.database.utils;
+package cn.chenzhongjin.greendao.sample.database.utils;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import cn.chenzhongjin.greendaogenerator.database.DaoMaster;
+import cn.chenzhongjin.greendao.sample.database.DaoMaster;
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.internal.DaoConfig;
 

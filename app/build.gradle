@@ -29,5 +29,19 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile rootProject.ext.dependencies["junit"]
     compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+    compile rootProject.ext.dependencies["cardview-v7"]
+    compile rootProject.ext.dependencies["butterknife"]
+    compile rootProject.ext.dependencies["logger"]
     compile rootProject.ext.dependencies["greendao"]
+
+    compile rootProject.ext.dependencies["superrecyclerview"]
+    compile rootProject.ext.dependencies["swipelayout"]
+
+    compile(rootProject.ext.dependencies["material-dialogs-core"]) {
+        transitive = true
+    }
+    compile(rootProject.ext.dependencies["material-dialogs-common"]) {
+        transitive = true
+    }
 }
