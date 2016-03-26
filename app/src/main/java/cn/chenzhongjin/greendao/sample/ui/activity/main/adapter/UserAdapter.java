@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.List;
 
 import cn.chenzhongjin.greendao.sample.R;
@@ -21,7 +23,9 @@ import cn.chenzhongjin.greendao.sample.listeners.CustomItemClickListener;
  */
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    private List<User> mUserList;
+    private static final String TAG = UserAdapter.class.getSimpleName();
+
+    private List<User> mData;
     private CustomItemClickListener mCustomItemClickListener;
 
     @Override
@@ -32,7 +36,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public UserAdapter(List<User> userList, CustomItemClickListener customItemClickListener) {
-        mUserList = userList;
+        mData = userList;
         mCustomItemClickListener = customItemClickListener;
     }
 
@@ -43,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return null == mUserList ? 0 : mUserList.size();
+        return null == mData ? 0 : mData.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -72,4 +76,44 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
         }
     }
+
+    public void add(User user) {
+        insert(user, mData.size());
+    }
+
+    public void insert(User user, int position) {
+        mData.add(position, user);
+        notifyItemInserted(position);
+    }
+
+    public void remove(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void clear() {
+        int size = mData.size();
+        mData.clear();
+        notifyItemRangeRemoved(0, size);
+    }
+
+    public void addAll(List<User> userList) {
+        if (null != userList && userList.size() > 0) {
+            int startIndex = mData.size();
+            mData.addAll(startIndex, userList);
+            notifyItemRangeInserted(startIndex, userList.size());
+        } else {
+            Logger.t(TAG).i("userList addall is null or size = 0");
+        }
+    }
+
+    public void addStartAll(List<User> userList) {
+        if (null != userList && userList.size() > 0) {
+            mData.addAll(0, userList);
+            notifyItemRangeInserted(0, userList.size());
+        } else {
+            Logger.t(TAG).i("chatMsgs addall is null or size = 0");
+        }
+    }
+
 }

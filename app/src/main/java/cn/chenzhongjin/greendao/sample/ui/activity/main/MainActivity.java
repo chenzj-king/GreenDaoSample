@@ -72,13 +72,26 @@ public class MainActivity extends BaseRvActivity implements SwipeRefreshLayout.O
         mAdapter.notifyDataSetChanged();
     }
 
+    private int i = 0;
+
     @Override
     public void onRefresh() {
         mHandler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                mAdapter.notifyDataSetChanged();
+                if (i++ % 2 == 0) {
+                    mUserList.clear();
+                    for (int i = 0; i < 10; i++) {
+                        User user = new User();
+                        mUserList.add(user);
+                    }
+                    mAdapter.addAll(mUserList);
+                    Logger.t(TAG).i("addAll UserList");
+                } else {
+                    mAdapter.clear();
+                    Logger.t(TAG).i("clear my adapter");
+                }
             }
         }, 1500);
     }
