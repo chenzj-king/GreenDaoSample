@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.lang.ref.WeakReference;
 
 import cn.chenzhongjin.greendao.sample.utils.MdDialogFactory;
@@ -53,6 +55,15 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     public MyHandler mHandler;
 
     protected MaterialDialog materialDialog;
+
+    /**
+     * judge reisterEvent or not
+     *
+     * @return
+     */
+    protected boolean isRegisterEvent() {
+        return false;
+    }
 
     /**
      * get bundle data
@@ -91,6 +102,9 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if (isRegisterEvent()) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -138,6 +152,9 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (isRegisterEvent()) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @Override

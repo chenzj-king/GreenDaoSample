@@ -34,13 +34,12 @@ dependencies {
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["logger"]
     compile rootProject.ext.dependencies["greendao"]
+    compile rootProject.ext.dependencies["eventbus"]
 
     compile rootProject.ext.dependencies["superrecyclerview"]
     compile rootProject.ext.dependencies["swipelayout"]
+    compile rootProject.ext.dependencies["pagerslidingtabstrip"]
 
-    compile (rootProject.ext.dependencies["materialviewpager"]){
-        transitive = true
-    }
     compile(rootProject.ext.dependencies["material-dialogs-core"]) {
         transitive = true
     }

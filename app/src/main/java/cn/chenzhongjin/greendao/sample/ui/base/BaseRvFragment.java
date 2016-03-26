@@ -2,6 +2,7 @@ package cn.chenzhongjin.greendao.sample.ui.base;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.malinskiy.superrecyclerview.swipe.SparseItemRemoveAnimator;
@@ -9,13 +10,13 @@ import com.malinskiy.superrecyclerview.swipe.SparseItemRemoveAnimator;
 import cn.chenzhongjin.greendao.sample.R;
 
 /**
- * @author: chenzj
- * @Title: BaseRvActivity
- * @Description:
- * @date: 2016/3/24 23:35
- * @email: admin@chenzhongjin.cn
+ * @author chenzj
+ * @Title: BaseRvFragment
+ * @Description: 类的描述 -
+ * @date 2016/3/26 11:26
+ * @email admin@chenzhongjin.cn
  */
-public abstract class BaseRvActivity extends BaseActivity {
+public abstract class BaseRvFragment extends BaseFragment {
 
     protected abstract RecyclerView.LayoutManager getLayoutManager();
 
@@ -29,9 +30,9 @@ public abstract class BaseRvActivity extends BaseActivity {
     protected RecyclerView.LayoutManager mLayoutManager;
 
     @Override
-    protected void initSpecialView() {
+    protected void initSpecialView(View view) {
         // init recycler deafult config
-        mRecycler = (SuperRecyclerView) findViewById(R.id.recyclerView);
+        mRecycler = (SuperRecyclerView) view.findViewById(R.id.recyclerView);
         mRecyclerView = mRecycler != null ? mRecycler.getRecyclerView() : null;
         mRecyclerView.addOnScrollListener(new RecyclerViewListener());
 
@@ -86,4 +87,5 @@ public abstract class BaseRvActivity extends BaseActivity {
             isRecyclerMove = true;
         }
     }
-}
+}  
+

@@ -40,6 +40,7 @@ task daoGenerate << {
     user.addStringProperty("name");
     user.addStringProperty("sex");
     user.addIntProperty("phoneNumber");
+    user.addLongProperty("updateTime");
 
     new DaoGenerator().generateAll(schema, "app/src/main/java", null, null);
 }

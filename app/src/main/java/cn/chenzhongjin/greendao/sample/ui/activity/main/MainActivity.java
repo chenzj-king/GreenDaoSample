@@ -1,24 +1,23 @@
 package cn.chenzhongjin.greendao.sample.ui.activity.main;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
+import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.chenzhongjin.greendao.sample.R;
-import cn.chenzhongjin.greendao.sample.entity.User;
-import cn.chenzhongjin.greendao.sample.listeners.CustomItemClickListener;
-import cn.chenzhongjin.greendao.sample.ui.activity.main.adapter.UserAdapter;
-import cn.chenzhongjin.greendao.sample.ui.base.BaseRvActivity;
+import cn.chenzhongjin.greendao.sample.ui.activity.main.adapter.CustomFragmentPagerAdapter;
+import cn.chenzhongjin.greendao.sample.ui.base.BaseActivity;
+import cn.chenzhongjin.greendao.sample.ui.base.BaseFragment;
+import cn.chenzhongjin.greendao.sample.ui.fragment.delete.DeleteFragment;
+import cn.chenzhongjin.greendao.sample.ui.fragment.insert.InsertFragment;
+import cn.chenzhongjin.greendao.sample.ui.fragment.select.SelectFragment;
+import cn.chenzhongjin.greendao.sample.ui.fragment.update.UpdateFragment;
 
 /**
  * @author: chenzj
@@ -27,17 +26,20 @@ import cn.chenzhongjin.greendao.sample.ui.base.BaseRvActivity;
  * @date: 2016/3/24 22:45
  * @email: admin@chenzhongjin.cn
  */
-public class MainActivity extends BaseRvActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    ArrayList<BaseFragment> mBaseFragments;
+
     @Bind(R.id.common_toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.toolbar_title_textview)
-    TextView mTitleTextView;
-
-    private List<User> mUserList;
-    private UserAdapter mAdapter;
+    @Bind(R.id.title_textview)
+    TextView mTitleTv;
+    @Bind(R.id.tabs)
+    PagerSlidingTabStrip mPagerSlidingTabStrip;
+    @Bind(R.id.viewpager)
+    ViewPager mViewPager;
 
     @Override
     protected int getLayoutId() {
@@ -45,54 +47,24 @@ public class MainActivity extends BaseRvActivity implements SwipeRefreshLayout.O
     }
 
     @Override
-    protected RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
-    }
-
-    @Override
     protected void initViews() {
         ButterKnife.bind(this);
 
-        mUserList = new ArrayList<>();
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle("");
+        mTitleTv.setText(getString(R.string.main_title));
 
-        for (int i = 0; i < 10; i++) {
-            User user = new User();
-            mUserList.add(user);
-        }
-        Logger.i("userList size=" + mUserList.size());
-        mAdapter = new UserAdapter(mUserList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Logger.t(TAG).i("itemClick:viewId=" + view.getId() + "  position=" + position);
-            }
-        });
-        mRecycler.setAdapter(mAdapter);
-        mRecycler.setRefreshListener(this);
+        mBaseFragments = new ArrayList<>();
+        mBaseFragments.add(new InsertFragment());
+        mBaseFragments.add(new DeleteFragment());
+        mBaseFragments.add(new UpdateFragment());
+        mBaseFragments.add(new SelectFragment());
 
-        mAdapter.notifyDataSetChanged();
+        mViewPager.setAdapter(new CustomFragmentPagerAdapter(getSupportFragmentManager(), mBaseFragments));
+        mViewPager.setCurrentItem(0);
+        mViewPager.setOffscreenPageLimit(4);
+
+        mPagerSlidingTabStrip.setViewPager(mViewPager);
     }
 
-    private int i = 0;
-
-    @Override
-    public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                if (i++ % 2 == 0) {
-                    mUserList.clear();
-                    for (int i = 0; i < 10; i++) {
-                        User user = new User();
-                        mUserList.add(user);
-                    }
-                    mAdapter.addAll(mUserList);
-                    Logger.t(TAG).i("addAll UserList");
-                } else {
-                    mAdapter.clear();
-                    Logger.t(TAG).i("clear my adapter");
-                }
-            }
-        }, 1500);
-    }
 }

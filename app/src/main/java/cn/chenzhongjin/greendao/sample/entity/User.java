@@ -18,6 +18,7 @@ public class User {
     private String name;
     private String sex;
     private Integer phoneNumber;
+    private Long updateTime;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -36,11 +37,12 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String name, String sex, Integer phoneNumber) {
+    public User(Long id, String name, String sex, Integer phoneNumber, Long updateTime) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.phoneNumber = phoneNumber;
+        this.updateTime = updateTime;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -79,6 +81,14 @@ public class User {
 
     public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Long updateTime) {
+        this.updateTime = updateTime;
     }
 
     /** Convenient call for {@link AbstractDao#delete(Object)}. Entity must attached to an entity context. */

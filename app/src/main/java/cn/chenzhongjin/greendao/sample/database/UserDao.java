@@ -27,6 +27,7 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Sex = new Property(2, String.class, "sex", false, "SEX");
         public final static Property PhoneNumber = new Property(3, Integer.class, "phoneNumber", false, "PHONE_NUMBER");
+        public final static Property UpdateTime = new Property(4, Long.class, "updateTime", false, "UPDATE_TIME");
     };
 
     private DaoSession daoSession;
@@ -48,7 +49,8 @@ public class UserDao extends AbstractDao<User, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"SEX\" TEXT," + // 2: sex
-                "\"PHONE_NUMBER\" INTEGER);"); // 3: phoneNumber
+                "\"PHONE_NUMBER\" INTEGER," + // 3: phoneNumber
+                "\"UPDATE_TIME\" INTEGER);"); // 4: updateTime
     }
 
     /** Drops the underlying database table. */
@@ -81,6 +83,11 @@ public class UserDao extends AbstractDao<User, Long> {
         if (phoneNumber != null) {
             stmt.bindLong(4, phoneNumber);
         }
+ 
+        Long updateTime = entity.getUpdateTime();
+        if (updateTime != null) {
+            stmt.bindLong(5, updateTime);
+        }
     }
 
     @Override
@@ -102,7 +109,8 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sex
-            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3) // phoneNumber
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // phoneNumber
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // updateTime
         );
         return entity;
     }
@@ -114,6 +122,7 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSex(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setPhoneNumber(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setUpdateTime(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
      }
     
     /** @inheritdoc */
