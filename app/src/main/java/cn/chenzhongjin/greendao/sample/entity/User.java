@@ -17,7 +17,7 @@ public class User {
     private Long id;
     private String name;
     private String sex;
-    private Integer phoneNumber;
+    private Long phoneNumber;
     private Long updateTime;
 
     /** Used to resolve relations */
@@ -37,7 +37,7 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String name, String sex, Integer phoneNumber, Long updateTime) {
+    public User(Long id, String name, String sex, Long phoneNumber, Long updateTime) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -75,11 +75,11 @@ public class User {
         this.sex = sex;
     }
 
-    public Integer getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

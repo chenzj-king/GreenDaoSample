@@ -1,11 +1,14 @@
-package cn.chenzhongjin.greendao.sample.ui.activity.main.adapter;
+package cn.chenzhongjin.greendao.sample.ui.fragment.delete.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -16,14 +19,14 @@ import cn.chenzhongjin.greendao.sample.listeners.CustomItemClickListener;
 
 /**
  * @author: chenzj
- * @Title: UserAdapter
+ * @Title: UserDeleteAdapter
  * @Description:
  * @date: 2016/3/24 23:13
  * @email: admin@chenzhongjin.cn
  */
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.ViewHolder> {
 
-    private static final String TAG = UserAdapter.class.getSimpleName();
+    private static final String TAG = UserDeleteAdapter.class.getSimpleName();
 
     private List<User> mData;
     private CustomItemClickListener mCustomItemClickListener;
@@ -31,19 +34,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_info, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_info_delete, parent, false);
         return new ViewHolder(view, viewType, mCustomItemClickListener);
     }
 
-    public UserAdapter(List<User> userList, CustomItemClickListener customItemClickListener) {
+    public UserDeleteAdapter(List<User> userList, CustomItemClickListener customItemClickListener) {
         mData = userList;
         mCustomItemClickListener = customItemClickListener;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        User itemData = mData.get(position);
 
+        User itemData = mData.get(position);
         holder.mNameTv.setText(String.format("姓名:%s", itemData.getName()));
         holder.mSexTv.setText(String.format("性别:%s", itemData.getSex()));
         holder.mPhoneNumTv.setText(String.format("电话号码:%d", itemData.getPhoneNumber()));
@@ -61,6 +65,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private CustomItemClickListener mCustomItemClickListener;
+        SwipeLayout mSwipeLayout;
+        ImageView mDelImv;
+
         TextView mNameTv;
         TextView mSexTv;
         TextView mPhoneNumTv;
@@ -73,8 +80,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             mNameTv = (TextView) itemView.findViewById(R.id.user_info_name);
             mSexTv = (TextView) itemView.findViewById(R.id.user_info_sex);
             mPhoneNumTv = (TextView) itemView.findViewById(R.id.user_info_phone_number);
+            mSwipeLayout = (SwipeLayout) itemView.findViewById(R.id.userinfo_swipe_layout);
+            mDelImv = (ImageView) itemView.findViewById(R.id.trash);
 
-            itemView.setOnClickListener(this);
+            mDelImv.setOnClickListener(this);
         }
 
         @Override

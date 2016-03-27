@@ -39,6 +39,8 @@ dependencies {
     compile rootProject.ext.dependencies["superrecyclerview"]
     compile rootProject.ext.dependencies["swipelayout"]
     compile rootProject.ext.dependencies["pagerslidingtabstrip"]
+    compile rootProject.ext.dependencies["android-segmented"]
+    compile rootProject.ext.dependencies["fancybuttons"]
 
     compile(rootProject.ext.dependencies["material-dialogs-core"]) {
         transitive = true

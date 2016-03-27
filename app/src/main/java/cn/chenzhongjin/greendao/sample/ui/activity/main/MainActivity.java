@@ -50,8 +50,8 @@ public class MainActivity extends BaseActivity {
     protected void initViews() {
         ButterKnife.bind(this);
 
-        setSupportActionBar(mToolbar);
         mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
         mTitleTv.setText(getString(R.string.main_title));
 
         mBaseFragments = new ArrayList<>();

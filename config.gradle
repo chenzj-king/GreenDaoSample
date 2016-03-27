@@ -41,8 +41,8 @@ ext {
             "systembartint"          : 'com.readystatesoftware.systembartint:systembartint:1.0.3',
             "swipebacklayout"        : 'me.imid.swipebacklayout.lib:library:1.0.0',
 
-            "material-dialogs-core"  : 'com.github.afollestad.material-dialogs:core:0.8.5.6@aar',
-            "material-dialogs-common": 'com.github.afollestad.material-dialogs:commons:0.8.5.6@aar',
+            "material-dialogs-core"  : 'com.github.afollestad.material-dialogs:core:0.8.5.7@aar',
+            "material-dialogs-common": 'com.github.afollestad.material-dialogs:commons:0.8.5.7@aar',
 
             "viewpageindicator"      : 'com.inkapplications.viewpageindicator:library:2.4.3',
             "fancybuttons"           : 'com.github.medyo:fancybuttons:1.5@aar',

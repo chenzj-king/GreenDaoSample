@@ -1,6 +1,7 @@
 package cn.chenzhongjin.greendao.sample.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -71,6 +72,17 @@ public class MdDialogFactory {
                 .build();
     }
 
+    public static MaterialDialog showNotitleCallbacks(Context context, String content, String positiveText, String
+            negativeText,
+                                                      MaterialDialog.SingleButtonCallback singleButtonCallback) {
+        return new MaterialDialog.Builder(context)
+                .content(content)
+                .positiveText(positiveText)
+                .negativeText(negativeText)
+                .onPositive(singleButtonCallback)
+                .build();
+    }
+
     public static MaterialDialog showList(Context context, String title, int itesId, MaterialDialog.ListCallback listCallback) {
         return new MaterialDialog.Builder(context)
                 .title(title)
@@ -120,6 +132,15 @@ public class MdDialogFactory {
                 .items(itemsId)
                 .itemsCallbackSingleChoice(2, listCallbackSingleChoice)
                 .positiveText(R.string.md_choose_label)
+                .build();
+    }
+
+    public static MaterialDialog showNoTitleLoading(Context context, String content,
+                                                    DialogInterface.OnDismissListener onDismissListener) {
+        return new MaterialDialog.Builder(context)
+                .content(content)
+                .progress(true, 0)
+                .dismissListener(onDismissListener)
                 .build();
     }
 }

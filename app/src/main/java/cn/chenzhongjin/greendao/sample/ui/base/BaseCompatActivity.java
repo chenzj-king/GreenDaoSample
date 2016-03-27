@@ -15,6 +15,7 @@
 
 package cn.chenzhongjin.greendao.sample.ui.base;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,7 +55,7 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
      */
     public MyHandler mHandler;
 
-    protected MaterialDialog materialDialog;
+    protected MaterialDialog mMaterialDialog;
 
     /**
      * judge reisterEvent or not
@@ -278,7 +279,7 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
         });
     }
 
-    protected static class MyHandler extends Handler {
+    public static class MyHandler extends Handler {
 
         private final WeakReference<BaseCompatActivity> mActivity;
 
@@ -297,18 +298,29 @@ public abstract class BaseCompatActivity extends AppCompatActivity {
     }
 
     public boolean isShowIngDialog() {
-        return null != materialDialog && (materialDialog.isShowing());
+        return null != mMaterialDialog && (mMaterialDialog.isShowing());
     }
 
     public void hideDialog() {
-        if (null != materialDialog && materialDialog.isShowing()) {
-            materialDialog.dismiss();
+        if (null != mMaterialDialog && mMaterialDialog.isShowing()) {
+            mMaterialDialog.dismiss();
         }
+    }
+
+    public void showBaseNotitleDialog(String content, String positiveText, String negativeText, MaterialDialog
+            .SingleButtonCallback singleButtonCallback) {
+        mMaterialDialog = MdDialogFactory.showNotitleCallbacks(this, content, positiveText, negativeText, singleButtonCallback);
+        mMaterialDialog.show();
     }
 
     public void showBaseDialog(String title, String content, String positiveText, String negativeText, MaterialDialog
             .SingleButtonCallback singleButtonCallback) {
-        materialDialog = MdDialogFactory.showCallbacks(this, title, content, positiveText, negativeText, singleButtonCallback);
-        materialDialog.show();
+        mMaterialDialog = MdDialogFactory.showCallbacks(this, title, content, positiveText, negativeText, singleButtonCallback);
+        mMaterialDialog.show();
+    }
+
+    public void showNoTitleLoadingDialog(String content, DialogInterface.OnDismissListener onDismissListener) {
+        mMaterialDialog = MdDialogFactory.showNoTitleLoading(this, content, onDismissListener);
+        mMaterialDialog.show();
     }
 }

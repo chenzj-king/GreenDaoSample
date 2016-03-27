@@ -16,12 +16,12 @@
 package cn.chenzhongjin.greendao.sample.ui.base;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -52,7 +52,7 @@ public abstract class BaseLazyFragment extends Fragment {
     /**
      * context
      */
-    protected Context mContext = null;
+    public Activity mContext = null;
 
     private boolean isFirstResume = true;
     private boolean isFirstVisible = true;
@@ -79,7 +79,6 @@ public abstract class BaseLazyFragment extends Fragment {
      * sometime will extent BaseLazyFra to init some specialview.such as recyclerview/head
      */
     protected void initSpecialView(View view) {
-
     }
 
     /**
@@ -231,6 +230,10 @@ public abstract class BaseLazyFragment extends Fragment {
         }
     }
 
+    public BaseCompatActivity getBaseAct() {
+        return (BaseCompatActivity) mContext;
+    }
+
     /**
      * Eventbus相关
      *
@@ -316,5 +319,9 @@ public abstract class BaseLazyFragment extends Fragment {
         if (mContext instanceof BaseCompatActivity) {
             ((BaseCompatActivity) mContext).showToast(resId);
         }
+    }
+
+    public BaseCompatActivity.MyHandler getHandler() {
+        return ((BaseCompatActivity) mContext).mHandler;
     }
 }

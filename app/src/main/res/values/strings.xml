@@ -3,4 +3,15 @@
 
     <string name="main_title">GreenDao Sample</string>
     <string name="header_logo_text">Dream Liner is Best Team</string>
+
+    <string name="input_name_title">姓名:</string>
+    <string name="input_name_hint">请输入姓名</string>
+    <string name="input_sex_title">性别:</string>
+
+    <string name="input_phone_num_title">电话号码:</string>
+    <string name="input_phone_num_hint">请输入电话号码</string>
+    <string name="input_name_error">姓名不能为空</string>
+    <string name="input_phone_num_error">请输入正确的手机号码</string>
+
 </resources>
+

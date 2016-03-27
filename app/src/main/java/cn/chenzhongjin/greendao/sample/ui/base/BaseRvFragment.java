@@ -1,5 +1,6 @@
 package cn.chenzhongjin.greendao.sample.ui.base;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,7 +17,7 @@ import cn.chenzhongjin.greendao.sample.R;
  * @date 2016/3/26 11:26
  * @email admin@chenzhongjin.cn
  */
-public abstract class BaseRvFragment extends BaseFragment {
+public abstract class BaseRvFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected abstract RecyclerView.LayoutManager getLayoutManager();
 
@@ -32,7 +33,7 @@ public abstract class BaseRvFragment extends BaseFragment {
     @Override
     protected void initSpecialView(View view) {
         // init recycler deafult config
-        mRecycler = (SuperRecyclerView) view.findViewById(R.id.recyclerView);
+        mRecycler = (SuperRecyclerView) view.findViewById(R.id.list);
         mRecyclerView = mRecycler != null ? mRecycler.getRecyclerView() : null;
         mRecyclerView.addOnScrollListener(new RecyclerViewListener());
 

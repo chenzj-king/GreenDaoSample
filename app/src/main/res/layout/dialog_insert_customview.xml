@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/input_name_title"
+        android:textColor="#80000000"
+        android:textSize="@dimen/customTitle"
+        />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="@string/input_name_hint"
+        android:textColor="#000000"
+        android:textSize="@dimen/customEntry"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/input_phone_num_title"
+        android:textColor="#80000000"
+        android:textSize="@dimen/customTitle"
+        />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="@string/input_phone_num_hint"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:textSize="@dimen/customEntry"
+        />
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        android:id="@+id/segmented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        segmentedgroup:sc_border_width="1dp"
+        segmentedgroup:sc_checked_text_color="#ff33b5e5"
+        segmentedgroup:sc_corner_radius="5dp"
+        segmentedgroup:sc_tint_color="#CDC5BF"
+        >
+
+        <RadioButton
+            android:id="@+id/radio_button_man"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="男"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_button_woman"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="女"/>
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+</LinearLayout>
