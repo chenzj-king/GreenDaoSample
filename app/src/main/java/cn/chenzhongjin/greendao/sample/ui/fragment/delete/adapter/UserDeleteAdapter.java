@@ -47,6 +47,7 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        // TODO: 2016/3/27 swiplayout status should manager.because it has cache.
         User itemData = mData.get(position);
         holder.mNameTv.setText(String.format("姓名:%s", itemData.getName()));
         holder.mSexTv.setText(String.format("性别:%s", itemData.getSex()));

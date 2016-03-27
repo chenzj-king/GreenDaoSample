@@ -131,7 +131,6 @@ public class InsertFragment extends BaseRvFragment {
 
                         //refresh ui
                         mAdapter.insert(user, 0);
-                        // TODO: 2016/3/27  should post Event to insert to other fragment
                         postEvent(new UserDataEvent(mUserDao.loadAll()));
                         dialog.dismiss();
 
