@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.orhanobut.logger.Logger;
 
+import java.util.HashSet;
 import java.util.List;
 
 import cn.chenzhongjin.greendao.sample.R;
@@ -29,6 +31,7 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
     private static final String TAG = UserDeleteAdapter.class.getSimpleName();
 
     private List<User> mData;
+    private HashSet<Integer> mSelectIndexSet;
     private CustomItemClickListener mCustomItemClickListener;
 
     @Override
@@ -40,18 +43,50 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
 
     public UserDeleteAdapter(List<User> userList, CustomItemClickListener customItemClickListener) {
         mData = userList;
+        mSelectIndexSet = new HashSet<>();
         mCustomItemClickListener = customItemClickListener;
     }
 
     @SuppressLint("DefaultLocale")
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        // TODO: 2016/3/27 swiplayout status should manager.because it has cache.
-        User itemData = mData.get(position);
+        final User itemData = mData.get(position);
         holder.mNameTv.setText(String.format("姓名:%s", itemData.getName()));
         holder.mSexTv.setText(String.format("性别:%s", itemData.getSex()));
         holder.mPhoneNumTv.setText(String.format("电话号码:%d", itemData.getPhoneNumber()));
+
+        holder.mSwipeLayout.setTag(position);
+        holder.mSwipeLayout.addSwipeListener(new SimpleSwipeListener() {
+            @Override
+            public void onOpen(SwipeLayout layout) {
+                super.onOpen(layout);
+                if (((int) layout.getTag()) == position) {
+                    mSelectIndexSet.add(position);
+                }
+            }
+
+            @Override
+            public void onClose(SwipeLayout layout) {
+                super.onClose(layout);
+                if (((int) layout.getTag()) == position) {
+                    mSelectIndexSet.remove(position);
+                }
+            }
+        });
+
+        boolean isSelect = false;
+        for (int selectPosition : mSelectIndexSet) {
+            if (position == selectPosition) {
+                isSelect = true;
+                break;
+            }
+        }
+        if (isSelect) {
+            holder.mSwipeLayout.open(true);
+        } else {
+            holder.mSwipeLayout.close(true);
+        }
     }
 
     @Override
@@ -105,17 +140,23 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
     }
 
     public void remove(int position) {
+        mSelectIndexSet.remove(getItemData(position));
         mData.remove(position);
         notifyItemRemoved(position);
     }
 
     public void clear() {
         int size = mData.size();
+
         mData.clear();
+        mSelectIndexSet.clear();
+
         notifyItemRangeRemoved(0, size);
     }
 
     public void addAll(List<User> userList) {
+        mSelectIndexSet.clear();
+
         if (null != userList && userList.size() > 0) {
             int startIndex = mData.size();
             mData.addAll(startIndex, userList);
