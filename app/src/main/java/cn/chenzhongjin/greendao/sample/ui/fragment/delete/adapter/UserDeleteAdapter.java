@@ -2,7 +2,9 @@ package cn.chenzhongjin.greendao.sample.ui.fragment.delete.adapter;
 
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,7 +14,6 @@ import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.orhanobut.logger.Logger;
 
-import java.util.HashSet;
 import java.util.List;
 
 import cn.chenzhongjin.greendao.sample.R;
@@ -30,8 +31,9 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
 
     private static final String TAG = UserDeleteAdapter.class.getSimpleName();
 
+    private int mSelectIndex = -1;
+    private CloseTouchListener mCloseTouchListener;
     private List<User> mData;
-    private HashSet<Integer> mSelectIndexSet;
     private CustomItemClickListener mCustomItemClickListener;
 
     @Override
@@ -43,7 +45,7 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
 
     public UserDeleteAdapter(List<User> userList, CustomItemClickListener customItemClickListener) {
         mData = userList;
-        mSelectIndexSet = new HashSet<>();
+        mCloseTouchListener = new CloseTouchListener();
         mCustomItemClickListener = customItemClickListener;
     }
 
@@ -56,35 +58,23 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
         holder.mSexTv.setText(String.format("性别:%s", itemData.getSex()));
         holder.mPhoneNumTv.setText(String.format("电话号码:%d", itemData.getPhoneNumber()));
 
-        holder.mSwipeLayout.setTag(position);
         holder.mSwipeLayout.addSwipeListener(new SimpleSwipeListener() {
+
             @Override
             public void onOpen(SwipeLayout layout) {
                 super.onOpen(layout);
-                if (((int) layout.getTag()) == position) {
-                    mSelectIndexSet.add(position);
-                }
+                mSelectIndex = position;
             }
 
             @Override
             public void onClose(SwipeLayout layout) {
                 super.onClose(layout);
-                if (((int) layout.getTag()) == position) {
-                    mSelectIndexSet.remove(position);
-                }
+                mSelectIndex = -1;
             }
         });
+        holder.mSwipeLayout.setOnTouchListener(mCloseTouchListener);
 
-        boolean isSelect = false;
-        for (int selectPosition : mSelectIndexSet) {
-            if (position == selectPosition) {
-                isSelect = true;
-                break;
-            }
-        }
-        if (isSelect) {
-            holder.mSwipeLayout.open(true);
-        } else {
+        if (mSelectIndex == -1) {
             holder.mSwipeLayout.close(true);
         }
     }
@@ -140,22 +130,17 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
     }
 
     public void remove(int position) {
-        mSelectIndexSet.remove(getItemData(position));
         mData.remove(position);
         notifyItemRemoved(position);
     }
 
     public void clear() {
         int size = mData.size();
-
         mData.clear();
-        mSelectIndexSet.clear();
-
         notifyItemRangeRemoved(0, size);
     }
 
     public void addAll(List<User> userList) {
-        mSelectIndexSet.clear();
 
         if (null != userList && userList.size() > 0) {
             int startIndex = mData.size();
@@ -175,4 +160,19 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
         }
     }
 
+
+    class CloseTouchListener implements View.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (mSelectIndex != -1) {
+                final int position = mSelectIndex;
+                mSelectIndex = -1;
+                Log.i("chenzj", "mSelectIndex=" + mSelectIndex + "\nposition=" + position);
+                notifyItemChanged(position);
+                return true;
+            }
+            return false;
+        }
+    }
 }
