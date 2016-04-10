@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        applicationId 'cn.chenzhongjin.greendao.sample'
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
 
         ndk {
             //设置支持的SO库架构
@@ -27,26 +27,27 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile rootProject.ext.dependencies["junit"]
-    compile rootProject.ext.dependencies["appcompat-v7"]
-    compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile rootProject.ext.dependencies["cardview-v7"]
-    compile rootProject.ext.dependencies["butterknife"]
-    compile rootProject.ext.dependencies["logger"]
-    compile rootProject.ext.dependencies["greendao"]
-    compile rootProject.ext.dependencies["eventbus"]
 
-    compile rootProject.ext.dependencies["superrecyclerview"]
-    compile rootProject.ext.dependencies["swipelayout"]
-    compile rootProject.ext.dependencies["pagerslidingtabstrip"]
-    compile rootProject.ext.dependencies["android-segmented"]
-    compile rootProject.ext.dependencies["fancybuttons"]
+    testCompile libraries.junit
+    compile libraries.supportAppCompat
+    compile libraries.supportRecyclerView
+    compile libraries.supportCardView
+    compile libraries.butterknife
+    compile libraries.logger
+    compile libraries.greendao
+    compile libraries.eventbus3
 
-    compile(rootProject.ext.dependencies["material-dialogs-core"]) {
+    compile libraries.superrecyclerview
+    compile libraries.swipelayout
+    compile(libraries.materialDialogsCore) {
         transitive = true
     }
-    compile(rootProject.ext.dependencies["material-dialogs-common"]) {
+    compile(libraries.materialDialogsCommon) {
         transitive = true
     }
+    compile libraries.pagerslidingtabstrip
+    compile libraries.androidSegmented
+    compile libraries.fancybuttons
+    compile libraries.animationsLib
 
 }

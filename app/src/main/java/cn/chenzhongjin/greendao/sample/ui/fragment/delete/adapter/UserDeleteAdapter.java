@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
+import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -27,7 +30,7 @@ import cn.chenzhongjin.greendao.sample.listeners.CustomItemClickListener;
  * @date: 2016/3/24 23:13
  * @email: admin@chenzhongjin.cn
  */
-public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.ViewHolder> {
+public class UserDeleteAdapter extends RecyclerSwipeAdapter<UserDeleteAdapter.ViewHolder> {
 
     private static final String TAG = UserDeleteAdapter.class.getSimpleName();
 
@@ -49,6 +52,11 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
         mCustomItemClickListener = customItemClickListener;
     }
 
+    @Override
+    public int getSwipeLayoutResourceId(int position) {
+        return R.id.userinfo_swipe_layout;
+    }
+
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
@@ -58,25 +66,14 @@ public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.Vi
         holder.mSexTv.setText(String.format("性别:%s", itemData.getSex()));
         holder.mPhoneNumTv.setText(String.format("电话号码:%d", itemData.getPhoneNumber()));
 
+        holder.mSwipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         holder.mSwipeLayout.addSwipeListener(new SimpleSwipeListener() {
-
             @Override
             public void onOpen(SwipeLayout layout) {
-                super.onOpen(layout);
-                mSelectIndex = position;
-            }
-
-            @Override
-            public void onClose(SwipeLayout layout) {
-                super.onClose(layout);
-                mSelectIndex = -1;
+                YoYo.with(Techniques.Tada).duration(500).delay(100).playOn(layout.findViewById(R.id.trash));
             }
         });
-        holder.mSwipeLayout.setOnTouchListener(mCloseTouchListener);
-
-        if (mSelectIndex == -1) {
-            holder.mSwipeLayout.close(true);
-        }
+        mItemManger.bindView(holder.itemView, position);
     }
 
     @Override

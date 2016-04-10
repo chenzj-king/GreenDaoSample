@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.daimajia.swipe.util.Attributes;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -86,6 +88,7 @@ public class DeleteFragment extends BaseRvFragment {
                 }
             }
         });
+        ((RecyclerSwipeAdapter) mAdapter).setMode(Attributes.Mode.Single);
         mRecycler.setAdapter(mAdapter);
         mRecycler.setRefreshListener(this);
         mAdapter.notifyDataSetChanged();
