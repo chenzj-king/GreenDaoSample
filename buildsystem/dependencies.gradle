@@ -1,71 +1,14 @@
 ext.versions = [
-        code                : 2,
-        name                : '1.1.0',
+        code       : 1,
+        name       : '1.0.0',
 
-        minSdk              : 15,
-        targetSdk           : 23,
-        compileSdk          : 23,
-        buildTools          : '23.0.3',
+        minSdk     : 15,
+        targetSdk  : 23,
+        compileSdk : 23,
+        buildTools : '23.0.3',
 
-        // Library versions
-        junit               : '4.12',
-        supportLibs         : '23.2.1',
-        multidex            : '1.0.1',
-
-        rxJava              : '1.1.2',
-        rxAndroid           : '1.1.0',
-        butterknife         : '7.0.1',
-        percentSupport      : '1.1.1',
-        leakcanary          : '1.3.1',
-        nineOldAndroids     : '2.4.0',
-        logger              : '1.12',
-        systembartint       : '1.0.3',
-        cropPic             : '1.0.1@aar',
-        imageChooser        : '1.5.2@aar',
-        shortCutBadger      : '1.1.3@aar',
-        ztZip               : '1.9',
-        sftp                : '0.1.53',
-        bugly               : '2.1',
-        umengAnalytics      : 'latest.integration',
-
-        glide               : '3.7.0',
-        fresco              : '0.9.0+',
-        picasso             : '2.5.2',
-        imageLoad           : '1.9.5',
-
-        okhttp2             : '2.7.5',
-        okhttp3             : '3.2.0',
-        okio                : '1.6.0',
-        retrofit2           : '2.0.1',
-        coverterGson        : '2.0.0-beta2',
-        adapterRxjava       : '2.0.0-beta2',
-        gson                : '2.6.2',
-
-        eventbus            : '2.4.0',
-        eventbus3           : '3.0.0',
-        greendao            : '2.1.0',
-
-        ioSocketEngine      : '0.7.0',
-        ioSocketSocket      : '0.7.0',
-
-        supperrecyclerview  : '1.1.1',
-        swipebacklayout     : '1.0.0',
-        materialDialogs     : '0.8.5.6@aar',
-        viewpageindicator   : '2.4.3',
-        fancybuttons        : '1.5@aar',
-        materialedittext    : '2.1.4',
-        androidSegmented    : '1.0.6',
-
-        swipelayout         : '1.1.8@aar',
-        slider              : '1.1.5@aar',
-        easingLib           : '1.0.1@aar',
-        animationsLib       : '1.1.3@aar',
-        numberProgressbar   : '1.2@aar',
-        viewHover           : '1.0.4@aar',
-        phototView          : '1.2.4',
-        searchview          : '2.2',
-        loadingView         : '1.0.5',
-        pagerslidingtabstrip: '1.0.1',
+        junit      : '4.12',
+        supportLibs: '23.3.0',
 ]
 ext.libraries = [
         junit                : "junit:junit:$versions.junit",
@@ -77,105 +20,111 @@ ext.libraries = [
         supportAnnotations   : "com.android.support:support-annotations:$versions.supportLibs",
 
         //拆dex
-        multidex             : "com.android.support:multidex:$versions.multidex",
+        multidex             : "com.android.support:multidex:1.0.1",
 
         //函数式编程
-        rxjava               : "io.reactivex:rxjava:$versions.rxJava",
-        rxandroid            : "io.reactivex:rxandroid:$versions.rxAndroid",
+        rxjava               : "io.reactivex:rxjava:1.1.2",
+        rxandroid            : "io.reactivex:rxandroid:1.1.0",
 
         //黄油刀.依赖注入view
-        butterknife          : "com.jakewharton:butterknife:$versions.butterknife",
-        percentSupport       : "com.zhy:percent-support-extends:$versions.percentSupport",
+        butterknife          : "com.jakewharton:butterknife:7.0.1",
+        percentSupport       : "com.zhy:percent-support-extends:1.1.1",
 
         //内存泄漏检测
-        leakcanary           : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
-        noOpleakcanary       : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",
+        leakcanary           : "com.squareup.leakcanary:leakcanary-android:1.3.1",
+        noOpleakcanary       : "com.squareup.leakcanary:leakcanary-android-no-op:1.3.1",
 
         //动画库
-        nineOldAndroids      : "com.nineoldandroids:library:$versions.nineOldAndroids",
+        nineOldAndroids      : "com.nineoldandroids:library:2.4.0",
         //cool log
-        logger               : "com.github.orhanobut:logger:$versions.logger",
+        logger               : "com.github.orhanobut:logger:1.12",
         //通知栏相关管理
-        systembartint        : "com.readystatesoftware.systembartint:systembartint:$versions.systembartint",
+        systembartint        : "com.readystatesoftware.systembartint:systembartint:1.0.3",
         //剪裁图片作为头像
-        cropPic              : "com.soundcloud.android:android-crop:$versions.cropPic",
+        cropPic              : "com.soundcloud.android:android-crop:1.0.1@aar",
+        ucrop                : "com.yalantis:ucrop:1.5.0",
         //选择相册/拍照
-        imageChooser         : "com.kbeanie:image-chooser-library:$versions.imageChooser",
+        imageChooser         : "com.kbeanie:image-chooser-library:1.5.2@aar",
         //桌面icon
-        shortCutBadger       : "me.leolin:ShortcutBadger:$versions.shortCutBadger",
+        shortCutBadger       : "me.leolin:ShortcutBadger:1.1.3@aar",
         //zip解压
-        ztZip                : "org.zeroturnaround:zt-zip:$versions.ztZip",
-        sftp                 : "com.jcraft:jsch:$versions.sftp",
+        ztZip                : "org.zeroturnaround:zt-zip:1.9",
+        sftp                 : "com.jcraft:jsch:0.1.53",
 
         //第三方统计/crash类sdk
-        bugly                : "com.tencent.bugly:crashreport:$versions.bugly",
-        umengAnalytics       : "com.umeng.analytics:analytics:$versions.umengAnalytics",
+        bugly                : "com.tencent.bugly:crashreport:2.1",
+        umengAnalytics       : "com.umeng.analytics:analytics:latest.integration",
 
         //图片加载框架
-        glide                : "com.github.bumptech.glide:glide:$versions.glide",
-        fresco               : "com.facebook.fresco:fresco:$versions.fresco",
-        picasso              : "com.squareup.picasso:picasso:$versions.picasso",
-        imageLoad            : "com.nostra13.universalimageloader:universal-image-loader:$versions.imageLoad",
+        glide                : "com.github.bumptech.glide:glide:3.7.0",
+        fresco               : "com.facebook.fresco:fresco:0.9.0+",
+        picasso              : "com.squareup.picasso:picasso:2.5.2",
+        imageLoad            : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
 
         //网络请求&gson.squareup系列
-        okhttp               : "com.squareup.okhttp:okhttp:$versions.okhttp2",
-        okhttpUrlconnection  : "com.squareup.okhttp:okhttp-urlconnection:$versions.okhttp2",
-        okhttpWs             : "com.squareup.okhttp:okhttp-ws:$versions.okhttp2",
+        okhttp               : "com.squareup.okhttp:okhttp:2.7.5",
+        okhttpUrlconnection  : "com.squareup.okhttp:okhttp-urlconnection:2.7.5",
+        okhttpWs             : "com.squareup.okhttp:okhttp-ws:2.7.5",
 
-        okhttp3              : "com.squareup.okhttp3:okhttp:$versions.okhttp3",
-        okhttpUrlconnection3 : "com.squareup.okhttp3:okhttp-urlconnection:$versions.okhttp3",
-        okhttpWs3            : "com.squareup.okhttp3:okhttp-ws:$versions.okhttp3",
+        okhttp3              : "com.squareup.okhttp3:okhttp:3.2.0",
+        okhttpUrlconnection3 : "com.squareup.okhttp3:okhttp-urlconnection:3.2.0",
+        okhttpWs3            : "com.squareup.okhttp3:okhttp-ws:3.2.0",
 
-        okio                 : "com.squareup.okio:okio:$versions.okio",
-        retrofit2            : "com.squareup.retrofit2:retrofit:$versions.retrofit2",
-        coverterGson         : "com.squareup.retrofit:converter-gson:$versions.coverterGson",
-        adapterRxjava        : "com.squareup.retrofit:adapter-rxjava:$versions.adapterRxjava",
-        gson                 : "com.google.code.gson:gson:$versions.gson",
+        okio                 : "com.squareup.okio:okio:1.6.0",
+        retrofit2            : "com.squareup.retrofit2:retrofit:2.0.1",
+        coverterGson         : "com.squareup.retrofit:converter-gson:2.0.0-beta2",
+        adapterRxjava        : "com.squareup.retrofit:adapter-rxjava:2.0.0-beta2",
+        gson                 : "com.google.code.gson:gson:2.6.2",
 
         //事件总线&数据库框架.greenrobot系列
-        eventbus             : "de.greenrobot:eventbus:$versions.eventbus",
-        eventbus3            : "org.greenrobot:eventbus:$versions.eventbus3",
-        greendao             : "de.greenrobot:greendao:$versions.greendao",
+        eventbus             : "de.greenrobot:eventbus:2.4.0",
+        eventbus3            : "org.greenrobot:eventbus:3.0.0",
+        greendao             : "de.greenrobot:greendao:2.1.0",
 
         //socket IO
-        ioSocketEngine       : "io.socket:engine.io-client:$versions.ioSocketEngine",
-        ioSocketSocket       : "io.socket:socket.io-client:$versions.ioSocketSocket",
+        ioSocketEngine       : "io.socket:engine.io-client:0.7.0",
+        ioSocketSocket       : "io.socket:socket.io-client:0.7.0",
 
         //***************************自定义控件类*************************************/
-        superrecyclerview    : "com.malinskiy:superrecyclerview:$versions.supperrecyclerview",
+        superrecyclerview    : "com.malinskiy:superrecyclerview:1.1.1",
         //滑动返回
-        swipebacklayout      : "me.imid.swipebacklayout.lib:library:$versions.swipebacklayout",
+        swipebacklayout      : "me.imid.swipebacklayout.lib:library:1.0.0",
         //md对话框
-        materialDialogsCore  : "com.github.afollestad.material-dialogs:core:$versions.materialDialogs",
-        materialDialogsCommon: "com.github.afollestad.material-dialogs:commons:$versions.materialDialogs",
+        materialDialogsCore  : "com.github.afollestad.material-dialogs:core:0.8.5.6@aar",
+        materialDialogsCommon: "com.github.afollestad.material-dialogs:commons:0.8.5.6@aar",
         //viewpager指示器"
-        viewpageindicator    : "com.inkapplications.viewpageindicator:library:$versions.viewpageindicator",
+        viewpageindicator    : "com.inkapplications.viewpageindicator:library:2.4.3",
         //button
-        fancybuttons         : "com.github.medyo:fancybuttons:$versions.fancybuttons",
+        fancybuttons         : "com.github.medyo:fancybuttons:1.5@aar",
         //md输入框
-        materialedittext     : "com.rengwuxian.materialedittext:library:materialedittext",
+        materialedittext     : "com.rengwuxian.materialedittext:library:2.1.4",
         //radioButton
-        androidSegmented     : "info.hoang8f:android-segmented:$versions.androidSegmented",
+        androidSegmented     : "info.hoang8f:android-segmented:1.0.6",
 
         //**************************daimajia系列*************************************/
         //滑动删除
-        swipelayout          : "com.daimajia.swipelayout:library:$versions.swipelayout",
+        swipelayout          : "com.daimajia.swipelayout:library:1.1.8@aar",
         //广告轮询 - 同时需要依赖pic&动画库
-        slider               : "com.daimajia.slider:library:$versions.slider",
+        slider               : "com.daimajia.slider:library:1.1.5@aar",
         //androidView动画
-        easingLib            : "com.daimajia.easing:library:$versions.easingLib",
-        animationsLib        : "com.daimajia.androidanimations:library:$versions.animationsLib",
+        easingLib            : "com.daimajia.easing:library:1.0.1@aar",
+        animationsLib        : "com.daimajia.androidanimations:library:1.1.3@aar",
         //数字进度条
-        numberProgressbar    : "com.daimajia.numberprogressbar:library:$versions.numberProgressbar",
+        numberProgressbar    : "com.daimajia.numberprogressbar:library:1.2@aar",
         //界面悬浮层 - 同时需要依赖easyLib&animatiosnLib
-        viewHover            : "com.daimajia.androidviewhover:library:$versions.viewHover",
+        viewHover            : "com.daimajia.androidviewhover:library:1.0.4@aar",
 
         //查看大图的控件
-        phototView           : "com.commit451:PhotoView:$versions.photoView",
+        phototView           : "com.commit451:PhotoView:1.2.4",
         //搜索框
-        searchview           : "com.lapism:searchview:$versions.searchview",
+        searchview           : "com.lapism:searchview:2.2",
         //加载中动画
-        loadingView          : "com.wang.avi:library:$versions.loadingView",
-        pagerslidingtabstrip : "com.astuetz:pagerslidingtabstrip:$versions.pagerslidingtabstrip",
+        loadingView          : "com.wang.avi:library:1.0.5",
+        pagerslidingtabstrip : "com.astuetz:pagerslidingtabstrip:1.0.1",
+        navigationtabbar     : "com.github.devlight.navigationtabbar:library:1.1.3",
+        circleimageview      : "de.hdodenhof:circleimageview:2.0.0",
+        roundedimageview     : "com.makeramen:roundedimageview:2.2.1",
+        bottomsheet          : "com.cocosw:bottomsheet:1.+@aar",
+        dropDownMenu         : "com.github.dongjunkun:DropDownMenu:1.0.3",
 ]
 
