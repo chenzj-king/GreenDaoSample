@@ -14,7 +14,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'
         //greenDao generator
-        classpath 'de.greenrobot:greendao-generator:2.1.0'
+        classpath libraries.greendaoGenerate
     }
 }
 
