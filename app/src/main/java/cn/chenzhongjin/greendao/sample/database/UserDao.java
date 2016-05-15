@@ -1,12 +1,12 @@
 package cn.chenzhongjin.greendao.sample.database;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
+import de.greenrobot.dao.database.Database;
+import de.greenrobot.dao.database.DatabaseStatement;
 
 import cn.chenzhongjin.greendao.sample.entity.User;
 
@@ -28,6 +28,7 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Sex = new Property(2, String.class, "sex", false, "SEX");
         public final static Property PhoneNumber = new Property(3, Long.class, "phoneNumber", false, "PHONE_NUMBER");
         public final static Property UpdateTime = new Property(4, Long.class, "updateTime", false, "UPDATE_TIME");
+        public final static Property TestUpgrade = new Property(5, String.class, "testUpgrade", false, "TEST_UPGRADE");
     };
 
     private DaoSession daoSession;
@@ -43,25 +44,26 @@ public class UserDao extends AbstractDao<User, Long> {
     }
 
     /** Creates the underlying database table. */
-    public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
+    public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"SEX\" TEXT," + // 2: sex
                 "\"PHONE_NUMBER\" INTEGER," + // 3: phoneNumber
-                "\"UPDATE_TIME\" INTEGER);"); // 4: updateTime
+                "\"UPDATE_TIME\" INTEGER," + // 4: updateTime
+                "\"TEST_UPGRADE\" TEXT);"); // 5: testUpgrade
     }
 
     /** Drops the underlying database table. */
-    public static void dropTable(SQLiteDatabase db, boolean ifExists) {
+    public static void dropTable(Database db, boolean ifExists) {
         String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"USER\"";
         db.execSQL(sql);
     }
 
     /** @inheritdoc */
     @Override
-    protected void bindValues(SQLiteStatement stmt, User entity) {
+    protected void bindValues(DatabaseStatement stmt, User entity) {
         stmt.clearBindings();
  
         Long id = entity.getId();
@@ -88,6 +90,11 @@ public class UserDao extends AbstractDao<User, Long> {
         if (updateTime != null) {
             stmt.bindLong(5, updateTime);
         }
+ 
+        String testUpgrade = entity.getTestUpgrade();
+        if (testUpgrade != null) {
+            stmt.bindString(6, testUpgrade);
+        }
     }
 
     @Override
@@ -110,7 +117,8 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sex
             cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // phoneNumber
-            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // updateTime
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // updateTime
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // testUpgrade
         );
         return entity;
     }
@@ -123,6 +131,7 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setSex(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setPhoneNumber(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
         entity.setUpdateTime(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setTestUpgrade(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     /** @inheritdoc */

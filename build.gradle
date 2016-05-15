@@ -14,7 +14,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'
         //greenDao generator
-        classpath 'de.greenrobot:greendao-generator:2.1.0'
+        classpath libraries.greandaoGeneratorEncryption
     }
 }
 
@@ -33,7 +33,7 @@ task clean(type: Delete) {
 //greenDao Generate Task
 task daoGenerate << {
     def pack = 'cn.chenzhongjin.greendao.sample'
-    Schema schema = new Schema(3, "${pack}.entity");//foucuse version for update database
+    Schema schema = new Schema(4, "${pack}.entity");//foucuse version for update database
     schema.defaultJavaPackageDao = "${pack}.database"
     schema.enableKeepSectionsByDefault();
     schema.enableActiveEntitiesByDefault();
@@ -43,6 +43,7 @@ task daoGenerate << {
     user.addStringProperty("sex");
     user.addLongProperty("phoneNumber");
     user.addLongProperty("updateTime");
+    user.addStringProperty("testUpgrade")
 
     new DaoGenerator().generateAll(schema, "app/src/main/java", null, null);
 }
