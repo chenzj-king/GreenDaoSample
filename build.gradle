@@ -1,9 +1,5 @@
 apply from: 'buildsystem/dependencies.gradle'
 
-import de.greenrobot.daogenerator.Entity
-import de.greenrobot.daogenerator.Schema
-import de.greenrobot.daogenerator.DaoGenerator
-
 buildscript {
     apply from: 'buildsystem/dependencies.gradle'
     repositories {
@@ -12,9 +8,11 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath libraries.apt
+
         //greenDao generator
-        classpath libraries.greendaoGenerate
+        classpath libraries.greendaoplugin
     }
 }
 
@@ -28,21 +26,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-//greenDao Generate Task
-task daoGenerate << {
-    def pack = 'cn.chenzhongjin.greendao.sample'
-    Schema schema = new Schema(3, "${pack}.entity");//foucuse version for update database
-    schema.defaultJavaPackageDao = "${pack}.database"
-    schema.enableKeepSectionsByDefault();
-    schema.enableActiveEntitiesByDefault();
-    Entity user = schema.addEntity("User");
-    user.addIdProperty();
-    user.addStringProperty("name");
-    user.addStringProperty("sex");
-    user.addLongProperty("phoneNumber");
-    user.addLongProperty("updateTime");
-
-    new DaoGenerator().generateAll(schema, "app/src/main/java", null, null);
 }

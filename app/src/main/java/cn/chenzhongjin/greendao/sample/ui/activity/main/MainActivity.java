@@ -8,7 +8,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.chenzhongjin.greendao.sample.R;
 import cn.chenzhongjin.greendao.sample.ui.activity.main.adapter.CustomFragmentPagerAdapter;
@@ -32,13 +32,13 @@ public class MainActivity extends BaseActivity {
 
     ArrayList<BaseFragment> mBaseFragments;
 
-    @Bind(R.id.common_toolbar)
+    @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
-    @Bind(R.id.title_textview)
+    @BindView(R.id.title_textview)
     TextView mTitleTv;
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     PagerSlidingTabStrip mPagerSlidingTabStrip;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
     @Override

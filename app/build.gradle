@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -32,13 +34,18 @@ dependencies {
     compile libraries.supportAppCompat
     compile libraries.supportRecyclerView
     compile libraries.supportCardView
+
     compile libraries.butterknife
-    compile libraries.logger
+    apt libraries.butterknifeApt
+
     compile libraries.greendao
-    compile libraries.eventbus3
+
+    compile libraries.logger
+    compile libraries.eventbus
 
     compile libraries.superrecyclerview
     compile libraries.swipelayout
+
     compile(libraries.materialDialogsCore) {
         transitive = true
     }
@@ -50,4 +57,9 @@ dependencies {
     compile libraries.fancybuttons
     compile libraries.animationsLib
 
+}
+
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
 }

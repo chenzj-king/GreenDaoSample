@@ -19,8 +19,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import org.greenrobot.greendao.database.Database;
+
 import cn.chenzhongjin.greendao.sample.database.DaoMaster;
 import cn.chenzhongjin.greendao.sample.database.UserDao;
+
 
 /**
  * @author chenzj
@@ -29,7 +32,7 @@ import cn.chenzhongjin.greendao.sample.database.UserDao;
  * @date
  * @email admin@chenzhongjin.cn
  */
-public class UpgradeHelper extends DaoMaster.OpenHelper {
+public class UpgradeHelper extends DaoMaster.DevOpenHelper {
 
     public static String TAG = UpgradeHelper.class.getSimpleName();
 
@@ -41,9 +44,10 @@ public class UpgradeHelper extends DaoMaster.OpenHelper {
      * Here is where the calls to upgrade are executed
      */
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(Database db, int oldVersion, int newVersion) {
 
-        /* i represent the version where the user is now and the class named with this number implies that is upgrading from i to i++ schema */
+        /* i represent the version where the user is now and the class named with this number implies that is upgrading from i to
+        i++ schema */
         for (int i = oldVersion; i < newVersion; i++) {
             Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by migrating all tables data");
             // TODO: 2016/3/24 注意把所新版本的表的xxDao都添加到这里

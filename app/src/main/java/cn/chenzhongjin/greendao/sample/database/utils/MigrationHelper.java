@@ -16,17 +16,19 @@
 package cn.chenzhongjin.greendao.sample.database.utils;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
+
+import org.greenrobot.greendao.AbstractDao;
+import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.internal.DaoConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cn.chenzhongjin.greendao.sample.database.DaoMaster;
-import de.greenrobot.dao.AbstractDao;
-import de.greenrobot.dao.internal.DaoConfig;
+
 
 /**
  * @author chenzj
@@ -37,7 +39,8 @@ import de.greenrobot.dao.internal.DaoConfig;
  */
 public class MigrationHelper {
 
-    private static final String CONVERSION_CLASS_NOT_FOUND_EXCEPTION = "MIGRATION HELPER - CLASS DOESN'T MATCH WITH THE CURRENT PARAMETERS";
+    private static final String CONVERSION_CLASS_NOT_FOUND_EXCEPTION = "MIGRATION HELPER - CLASS DOESN'T MATCH WITH THE CURRENT " +
+            "PARAMETERS";
     private static MigrationHelper instance;
 
     public static MigrationHelper getInstance() {
@@ -47,14 +50,14 @@ public class MigrationHelper {
         return instance;
     }
 
-    public void migrate(SQLiteDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    public void migrate(Database db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         generateTempTables(db, daoClasses);
         DaoMaster.dropAllTables(db, true);
         DaoMaster.createAllTables(db, false);
         restoreData(db, daoClasses);
     }
 
-    private void generateTempTables(SQLiteDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private void generateTempTables(Database db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         for (int i = 0; i < daoClasses.length; i++) {
             DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);
 
@@ -106,7 +109,7 @@ public class MigrationHelper {
         }
     }
 
-    private void restoreData(SQLiteDatabase db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
+    private void restoreData(Database db, Class<? extends AbstractDao<?, ?>>... daoClasses) {
         for (int i = 0; i < daoClasses.length; i++) {
             DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);
 
@@ -155,7 +158,7 @@ public class MigrationHelper {
         throw exception;
     }
 
-    private static List<String> getColumns(SQLiteDatabase db, String tableName) {
+    private static List<String> getColumns(Database db, String tableName) {
         List<String> columns = new ArrayList<>();
         Cursor cursor = null;
         try {

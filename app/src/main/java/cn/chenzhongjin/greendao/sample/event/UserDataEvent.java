@@ -2,7 +2,7 @@ package cn.chenzhongjin.greendao.sample.event;
 
 import java.util.List;
 
-import cn.chenzhongjin.greendao.sample.entity.User;
+import cn.chenzhongjin.greendao.sample.database.User;
 
 /**
  * @author chenzj

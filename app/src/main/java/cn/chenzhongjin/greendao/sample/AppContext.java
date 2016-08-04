@@ -8,9 +8,9 @@ import com.orhanobut.logger.Logger;
 
 import cn.chenzhongjin.greendao.sample.database.DaoMaster;
 import cn.chenzhongjin.greendao.sample.database.DaoSession;
+import cn.chenzhongjin.greendao.sample.database.User;
 import cn.chenzhongjin.greendao.sample.database.UserDao;
 import cn.chenzhongjin.greendao.sample.database.utils.UpgradeHelper;
-import cn.chenzhongjin.greendao.sample.entity.User;
 import cn.chenzhongjin.greendao.sample.utils.PreferencesUtils;
 
 /**

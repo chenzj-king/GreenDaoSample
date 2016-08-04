@@ -11,7 +11,7 @@ import com.orhanobut.logger.Logger;
 import java.util.List;
 
 import cn.chenzhongjin.greendao.sample.R;
-import cn.chenzhongjin.greendao.sample.entity.User;
+import cn.chenzhongjin.greendao.sample.database.User;
 import cn.chenzhongjin.greendao.sample.listeners.CustomItemClickListener;
 
 /**

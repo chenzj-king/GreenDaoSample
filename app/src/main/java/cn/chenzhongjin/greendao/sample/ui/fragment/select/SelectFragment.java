@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.List;
 
@@ -20,12 +21,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.chenzhongjin.greendao.sample.AppContext;
 import cn.chenzhongjin.greendao.sample.R;
+import cn.chenzhongjin.greendao.sample.database.User;
 import cn.chenzhongjin.greendao.sample.database.UserDao;
-import cn.chenzhongjin.greendao.sample.entity.User;
 import cn.chenzhongjin.greendao.sample.event.UserDataEvent;
 import cn.chenzhongjin.greendao.sample.ui.activity.main.adapter.UserAdapter;
 import cn.chenzhongjin.greendao.sample.ui.base.BaseRvFragment;
-import de.greenrobot.dao.query.WhereCondition;
 import info.hoang8f.android.segmented.SegmentedGroup;
 
 /**
