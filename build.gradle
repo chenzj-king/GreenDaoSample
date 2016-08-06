@@ -10,7 +10,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
         classpath libraries.apt
-
         //greenDao generator
         classpath libraries.greendaoplugin
     }

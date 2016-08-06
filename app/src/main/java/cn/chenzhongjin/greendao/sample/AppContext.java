@@ -51,7 +51,7 @@ public class AppContext extends Application {
     }
 
     private void initLogger() {
-        Logger.init("dreamliner").setMethodCount(1).setMethodOffset(0).setLogLevel(LogLevel.FULL).hideThreadInfo();
+        Logger.init("dreamliner").methodCount(1).methodOffset(0).logLevel(LogLevel.FULL).hideThreadInfo();
     }
 
     public static AppContext getInstance() {

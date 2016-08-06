@@ -4,11 +4,11 @@ ext.versions = [
 
         minSdk     : 15,
         targetSdk  : 23,
-        compileSdk : 23,
-        buildTools : '23.0.3',
+        compileSdk : 24,
+        buildTools : '24.0.1',
 
         junit      : '4.12',
-        supportLibs: '23.3.0',
+        supportLibs: '24.1.0',
 ]
 ext.libraries = [
         junit                      : "junit:junit:$versions.junit",
@@ -38,7 +38,7 @@ ext.libraries = [
         //动画库
         nineOldAndroids            : "com.nineoldandroids:library:2.4.0",
         //cool log
-        logger                     : "com.github.orhanobut:logger:1.12",
+        logger                     : "com.orhanobut:logger:1.15",
         //通知栏相关管理
         systembartint              : "com.readystatesoftware.systembartint:systembartint:1.0.3",
         //剪裁图片作为头像
@@ -76,25 +76,16 @@ ext.libraries = [
         //事件总线&数据库框架.greenrobot系列
         eventbus                   : "org.greenrobot:eventbus:3.0.0",
 
-        greendao                   : "org.greenrobot:greendao:3.0.1",
-        greendaoplugin             : "org.greenrobot:greendao-gradle-plugin:3.0.0",
-
-        //greendao加密版本
-        greandaoGeneratorEncryption: "org.greenrobot:greendao-generator-encryption:2.2.0",
-        greendaoEncryption         : "org.greenrobot:greendao-encryption:2.2.0",
-        sqlcipher                  : "net.zetetic:android-database-sqlcipher:3.4.0",
-
-        //socket IO
-        ioSocketEngine             : "io.socket:engine.io-client:0.7.0",
-        ioSocketSocket             : "io.socket:socket.io-client:0.7.0",
+        greendao                   : "org.greenrobot:greendao:3.1.0",
+        greendaoplugin             : "org.greenrobot:greendao-gradle-plugin:3.1.0",
 
         //***************************自定义控件类*************************************/
-        superrecyclerview          : "com.malinskiy:superrecyclerview:1.1.1",
+        superrecyclerview          : "com.malinskiy:superrecyclerview:1.1.4",
         //滑动返回
         swipebacklayout            : "me.imid.swipebacklayout.lib:library:1.0.0",
         //md对话框
-        materialDialogsCore        : "com.github.afollestad.material-dialogs:core:0.8.5.6@aar",
-        materialDialogsCommon      : "com.github.afollestad.material-dialogs:commons:0.8.5.6@aar",
+        materialDialogsCore        : "com.afollestad.material-dialogs:core:0.8.6.2",
+        materialDialogsCommon      : "com.afollestad.material-dialogs:commons:0.8.6.2",
         //viewpager指示器"
         viewpageindicator          : "com.inkapplications.viewpageindicator:library:2.4.3",
         //button

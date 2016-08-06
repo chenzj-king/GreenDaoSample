@@ -45,13 +45,8 @@ dependencies {
 
     compile libraries.superrecyclerview
     compile libraries.swipelayout
-
-    compile(libraries.materialDialogsCore) {
-        transitive = true
-    }
-    compile(libraries.materialDialogsCommon) {
-        transitive = true
-    }
+    compile libraries.materialDialogsCore
+    compile libraries.materialDialogsCommon
     compile libraries.pagerslidingtabstrip
     compile libraries.androidSegmented
     compile libraries.fancybuttons
