@@ -3,12 +3,12 @@ ext.versions = [
         name       : '1.0.0',
 
         minSdk     : 15,
-        targetSdk  : 23,
-        compileSdk : 24,
-        buildTools : '24.0.1',
+        targetSdk  : 22,
+        compileSdk : 28,
+        buildTools : '28.0.3',
 
         junit      : '4.12',
-        supportLibs: '24.1.0',
+        supportLibs: '28.0.0',
 ]
 ext.libraries = [
         junit                      : "junit:junit:$versions.junit",

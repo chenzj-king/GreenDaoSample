@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
@@ -31,14 +30,15 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     testCompile libraries.junit
+    compile 'com.android.support:support-v4:28.0.0'
     compile libraries.supportAppCompat
     compile libraries.supportRecyclerView
     compile libraries.supportCardView
 
-    compile libraries.butterknife
-    apt libraries.butterknifeApt
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    compile libraries.greendao
+    implementation 'org.greenrobot:greendao:3.2.2'
 
     compile libraries.logger
     compile libraries.eventbus
@@ -47,7 +47,8 @@ dependencies {
     compile libraries.swipelayout
     compile libraries.materialDialogsCore
     compile libraries.materialDialogsCommon
-    compile libraries.pagerslidingtabstrip
+    //compile libraries.pagerslidingtabstrip
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile libraries.androidSegmented
     compile libraries.fancybuttons
     compile libraries.animationsLib

@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -29,8 +28,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Field;
+
+import cn.chenzhongjin.greendao.sample.event.BaseEvent;
 
 
 /**
@@ -323,5 +326,9 @@ public abstract class BaseLazyFragment extends Fragment {
 
     public BaseCompatActivity.MyHandler getHandler() {
         return ((BaseCompatActivity) mContext).mHandler;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void receive(BaseEvent baseEvent) {
     }
 }

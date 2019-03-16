@@ -1,10 +1,12 @@
 package cn.chenzhongjin.greendao.sample.ui.activity.main;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.astuetz.PagerSlidingTabStrip;
+import com.flyco.tablayout.SegmentTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,6 @@ import butterknife.ButterKnife;
 import cn.chenzhongjin.greendao.sample.R;
 import cn.chenzhongjin.greendao.sample.ui.activity.main.adapter.CustomFragmentPagerAdapter;
 import cn.chenzhongjin.greendao.sample.ui.base.BaseActivity;
-import cn.chenzhongjin.greendao.sample.ui.base.BaseFragment;
 import cn.chenzhongjin.greendao.sample.ui.fragment.delete.DeleteFragment;
 import cn.chenzhongjin.greendao.sample.ui.fragment.insert.InsertFragment;
 import cn.chenzhongjin.greendao.sample.ui.fragment.select.SelectFragment;
@@ -30,14 +31,14 @@ public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    ArrayList<BaseFragment> mBaseFragments;
+    ArrayList<Fragment> mBaseFragments;
 
     @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
     @BindView(R.id.title_textview)
     TextView mTitleTv;
-    @BindView(R.id.tabs)
-    PagerSlidingTabStrip mPagerSlidingTabStrip;
+    @BindView(R.id.tab_layout)
+    SegmentTabLayout mTabLayout;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
@@ -64,7 +65,17 @@ public class MainActivity extends BaseActivity {
         mViewPager.setCurrentItem(0);
         mViewPager.setOffscreenPageLimit(4);
 
-        mPagerSlidingTabStrip.setViewPager(mViewPager);
+        mTabLayout.setTabData(new String[]{"新增", "删除", "更新", "查询"});
+        mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                mViewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+            }
+        });
     }
 
 }

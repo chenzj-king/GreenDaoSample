@@ -62,13 +62,13 @@ public class InsertFragment extends BaseRvFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_insert;
-
     }
 
     @Override
     protected void initViews(View view) {
         ButterKnife.bind(this, view);
 
+        Logger.i("初始化Insert");
         //init cache data
         mUserDao = AppContext.getInstance().getDaoSession().getUserDao();
         List<User> mDaoUserList = mUserDao.loadAll();

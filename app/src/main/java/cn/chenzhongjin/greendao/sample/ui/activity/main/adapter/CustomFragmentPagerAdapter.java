@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import cn.chenzhongjin.greendao.sample.ui.base.BaseFragment;
-
 /**
  * @author chenzj
  * @Title: MyFragmentPagerAdapter
@@ -17,9 +15,9 @@ import cn.chenzhongjin.greendao.sample.ui.base.BaseFragment;
  */
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    ArrayList<BaseFragment> list;
+    ArrayList<Fragment> list;
 
-    public CustomFragmentPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> list) {
+    public CustomFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> list) {
         super(fm);
         this.list = list;
 
