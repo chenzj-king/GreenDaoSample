@@ -9,7 +9,7 @@
   
         dependencies {
         	//greendao plugin
-        	classpath 'org.greenrobot:greendao-gradle-plugin:3.1.0'
+        	classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
     	}
 
 
@@ -18,21 +18,20 @@
 	    @Entity(active = true, nameInDb = "User")
 		public class User {
 		
-		    @Id
-		    private Long id;
-		
-		    private String name;
-		    private String sex;
-		    private Long phoneNumber;
-		    private Long updateTime;
+			    @Id
+			    private Long id;
+			
+			    private String name;
+			    private String sex;
+			    private String phone;
+			    private Long time;
 		}
 
 - ctrl+F9 make project一下
 
 
-- 执行结果如图.代表成功.会自动创建到相关的各种方法
+- 执行结果如图.代表成功.会自动创建到相关的各种方法(**图略**)
 
-![](http://i.imgur.com/yXTG2SC.jpg)
 
 ### 2.增删改查功能 ###
 
@@ -41,9 +40,9 @@
        	//insert to database
         User user = new User();
         user.setName(nameStr);
-        user.setPhoneNumber(Long.parseLong(phoneNumStr));
+        user.setPhone(phoneNumStr);
         user.setSex(sexStr);
-        user.setUpdateTime(System.currentTimeMillis());
+        user.setTime(System.currentTimeMillis());
         mUserDao.insert(user);
 
 - 删除
@@ -57,28 +56,25 @@
     	//update message
         User mNewUser = user;
         mNewUser.setName(nameStr);
-        mNewUser.setPhoneNumber(Long.parseLong(phoneNumStr));
+        mNewUser.setPhone(phoneNumStr);
         mNewUser.setSex(sexStr);
-        mNewUser.setUpdateTime(System.currentTimeMillis());
+        mNewUser.setTime(System.currentTimeMillis());
         mUserDao.insertOrReplace(mNewUser);
 
 - 查询
 
-		//模糊匹配姓名
-    	WhereCondition nameWhereCondition = UserDao.Properties.Name.like("%" + name + "%");
-		//模糊匹配电话号码
-        WhereCondition phoneNumWhereCondition = UserDao.Properties.PhoneNumber.like("%" + phoneNum + "%");
-		//精确匹配男/女
-        WhereCondition sexWhereCondition = UserDao.Properties.Sex.eq(sex);
+        List<WhereCondition> whereConditionList = new ArrayList<>();
 
-        List<User> users;
-
-		//根据是否有选择男/女来执行不同的select语句
-        if (TextUtils.isEmpty(sex)) {
-            users = mUserDao.queryBuilder().where(nameWhereCondition, phoneNumWhereCondition).list();
-        } else {
-            users = mUserDao.queryBuilder().where(nameWhereCondition, phoneNumWhereCondition, sexWhereCondition).list();
+        //模糊匹配姓名
+        whereConditionList.add(Properties.Name.like("%" + getContent(mOperationUser.getName()) + "%"));
+        //模糊匹配电话号码
+        whereConditionList.add(Properties.Phone.like("%" + getContent(mOperationUser.getPhone()) + "%"));
+        //精确匹配男/女
+        if (!TextUtils.isEmpty(mOperationUser.getSex())) {
+            whereConditionList.add(UserDao.Properties.Sex.eq(getContent(mOperationUser.getSex())));
         }
+        List<User> list = mUserDao.queryBuilder().where(Properties.Time.isNotNull(), whereConditionList.toArray(new WhereCondition[]{})).list();
+
 
 ### 3.数据库升级工具 ###
 
@@ -133,19 +129,14 @@
 ## TODO ##
 - 完成自定义数据类型的sample
 - 编写所有查询类型的sample
+- 一对多/多对多的sample
 
 ## Thanks For Open Source ##
 1.  [GreenDao](https://github.com/greenrobot/greenDAO)
-1.  [ButterKnife](https://github.com/JakeWharton/butterknife)
 1.  [EventBus](https://github.com/greenrobot/EventBus)
-1.  [SuperRecyclerview](https://github.com/Malinskiy/SuperRecyclerView)
-1.  [swipelayout](https://github.com/daimajia/AndroidSwipeLayout)
-1.  [material-dialogs](https://github.com/afollestad/material-dialogs)
-1.  [PagerSlidingTabStrip](https://github.com/astuetz/PagerSlidingTabStrip)
-1.  [android-segmented-control](https://github.com/Kaopiz/android-segmented-control)
 1.  [fancybuttons](https://github.com/medyo/Fancybuttons)
 1.  [logger](https://github.com/orhanobut/logger)
-1.  [AndroidAnimations](https://github.com/daimajia/AndroidAnimations)
+2.  [FlycoTabLayout](https://github.com/H07000223/FlycoTabLayout)
 
 
 # 关于我 #
@@ -153,5 +144,5 @@
 - **QQ:** 364972027
 - **Weibo:** [http://weibo.com/u/1829515680](http://weibo.com/u/1829515680)
 - **Email:** admin@chenzhongjin.cn
-- **Github:** [https://github.com/chenzj-king](https://github.com/chenzj-king)
-- **Blog:** [http://www.chenzhongjin.cn](http://www.chenzhongjin.cn)
+- **Github:** [chenzj-king](https://github.com/chenzj-king)
+- **Blog:** [chenzhongjin.cn](https://www.chenzhongjin.cn)
