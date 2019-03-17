@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="item"
+            type="cn.chenzhongjin.greendao.sample.database.User" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onLongClickListener"
+            type="android.view.View.OnLongClickListener" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{clickListener::onClick}"
+            android:onLongClick="@{onLongClickListener::onLongClick}"
+            android:orientation="vertical"
+            android:paddingLeft="8dp">
+
+            <TextView
+                android:id="@+id/user_info_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@{@string/name_format(item.name)}"
+                tools:text="姓名：李白" />
+
+            <TextView
+                android:id="@+id/user_info_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@{@string/sex_format(item.sex)}"
+                tools:text="性别：男" />
+
+            <TextView
+                android:id="@+id/user_info_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@{@string/phone_format(item.phone)}"
+                tools:text="电话号码：18027300700" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>

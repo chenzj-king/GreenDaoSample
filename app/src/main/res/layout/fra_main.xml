@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="act"
+            type="cn.chenzhongjin.greendao.sample.ui.activity.main.MainActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tl="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/line_divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <com.dreamliner.lib.customhead.CustomHead
+            android:id="@+id/custom_head"
+            style="@style/CustomHead"
+            tl:right_text="新增数据"
+            tl:title_text="GreenDao Sample" />
+
+        <com.flyco.tablayout.SegmentTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            tl:tl_divider_color="#dfdfdf"
+            tl:tl_divider_width="1dp"
+            tl:tl_indicator_color="#f2f5f6"
+            tl:tl_indicator_corner_radius="0dp"
+            tl:tl_indicator_width_equal_title="true"
+            tl:tl_tab_padding="22dp"
+            tl:tl_tab_space_equal="true"
+            tl:tl_textSelectColor="#27c6c6"
+            tl:tl_textUnselectColor="#232323"
+            tl:tl_textsize="14sp" />
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>
+

@@ -1,11 +1,22 @@
-apply from: 'buildsystem/dependencies.gradle'
-
 buildscript {
-    apply from: 'buildsystem/dependencies.gradle'
+
+    ext.versions = [
+            code      : 1,
+            name      : '1.0.0',
+
+            minSdk    : 15,
+            targetSdk : 28,
+            compileSdk: 28,
+            buildTools: '28.0.3',
+
+            junit     : '4.12',
+            support   : '28.0.0',
+            multidex  : '1.0.3',
+    ]
+
     repositories {
         jcenter()
         google()
-        maven { url "https://jitpack.io" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
@@ -17,7 +28,7 @@ allprojects {
     repositories {
         jcenter()
         google()
-        maven { url "https://jitpack.io" }
+        maven { url "https://nexus.chenzhongjin.cn/repository/AndroidRepository/" }
     }
 }
 

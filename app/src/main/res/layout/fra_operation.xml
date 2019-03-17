@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fra"
+            type="cn.chenzhongjin.greendao.sample.ui.fragment.OperationFragment" />
+
+        <variable
+            name="user"
+            type="cn.chenzhongjin.greendao.sample.entity.OperationUser" />
+    </data>
+
+    <LinearLayout style="@style/BaseDialogFraLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/bg_white_without_stroke_et"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@string/input_name_title"
+                android:textColor="#80000000"
+                android:textSize="@dimen/customTitle" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/input_name_hint"
+                android:maxLength="20"
+                android:text="@={user.name}"
+                android:textColor="#000000"
+                android:textSize="@dimen/customEntry" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@string/input_phone_num_title"
+                android:textColor="#80000000"
+                android:textSize="@dimen/customTitle" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/input_phone_num_hint"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:text="@={user.phone}"
+                android:textColor="#000000"
+                android:textSize="@dimen/customEntry" />
+
+            <com.flyco.tablayout.SegmentTabLayout
+                android:id="@+id/segment_tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                tl:tl_bar_color="#ffffff"
+                tl:tl_indicator_color="#2C97DE"
+                tl:tl_indicator_corner_radius="8dp"
+                tl:tl_tab_padding="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/cancel_bt"
+                    style="@style/BaseButton"
+                    android:onClick="@{fra::onClick}"
+                    app:fb_text="取消" />
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/sure_bt"
+                    style="@style/BaseButton"
+                    android:layout_marginLeft="10dp"
+                    android:onClick="@{fra::onClick}"
+                    app:fb_text="确认" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,15 +1,48 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="CustomHead">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="background_color">@android:color/white</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="title_text_color">@color/default_title_tv_color</item>
+        <item name="left_text_color">@color/default_title_tv_color</item>
+        <item name="right_text_color">@color/default_title_tv_color</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="BaseDialogFraLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/bg_gray_shade</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="BaseButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="fb_borderColor">#FFFFFF</item>
+        <item name="fb_borderWidth">1dp</item>
+        <item name="fb_defaultColor">#7ab800</item>
+        <item name="fb_focusColor">#9bd823</item>
+        <item name="fb_fontIconSize">10sp</item>
+        <item name="fb_iconPaddingLeft">20dp</item>
+        <item name="fb_iconPaddingRight">0dp</item>
+        <item name="fb_iconPosition">right</item>
+        <item name="fb_radius">30dp</item>
+        <item name="fb_textColor">#FFFFFF</item>
+        <item name="android:minWidth">80dp</item>
+    </style>
 
 </resources>

@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">GreenDaoGenerator</string>
+    <string name="app_name">GreenDao Sample</string>
 
-    <string name="main_title">GreenDao Sample</string>
-    <string name="header_logo_text">Dream Liner is Best Team</string>
+    <string name="name_format" formatted="false">姓名：%s</string>
+    <string name="sex_format" formatted="false">性别：%s</string>
+    <string name="phone_format" formatted="false">手机号码：%s</string>
 
     <string name="input_name_title">姓名:</string>
     <string name="input_name_hint">请输入姓名</string>

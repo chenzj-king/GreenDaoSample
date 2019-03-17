@@ -25,8 +25,8 @@ public class UserDao extends AbstractDao<User, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Sex = new Property(2, String.class, "sex", false, "SEX");
-        public final static Property PhoneNumber = new Property(3, Long.class, "phoneNumber", false, "PHONE_NUMBER");
-        public final static Property UpdateTime = new Property(4, Long.class, "updateTime", false, "UPDATE_TIME");
+        public final static Property Phone = new Property(3, String.class, "phone", false, "PHONE");
+        public final static Property Time = new Property(4, Long.class, "time", false, "TIME");
     }
 
     private DaoSession daoSession;
@@ -48,8 +48,8 @@ public class UserDao extends AbstractDao<User, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"SEX\" TEXT," + // 2: sex
-                "\"PHONE_NUMBER\" INTEGER," + // 3: phoneNumber
-                "\"UPDATE_TIME\" INTEGER);"); // 4: updateTime
+                "\"PHONE\" TEXT," + // 3: phone
+                "\"TIME\" INTEGER);"); // 4: time
     }
 
     /** Drops the underlying database table. */
@@ -77,14 +77,14 @@ public class UserDao extends AbstractDao<User, Long> {
             stmt.bindString(3, sex);
         }
  
-        Long phoneNumber = entity.getPhoneNumber();
-        if (phoneNumber != null) {
-            stmt.bindLong(4, phoneNumber);
+        String phone = entity.getPhone();
+        if (phone != null) {
+            stmt.bindString(4, phone);
         }
  
-        Long updateTime = entity.getUpdateTime();
-        if (updateTime != null) {
-            stmt.bindLong(5, updateTime);
+        Long time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(5, time);
         }
     }
 
@@ -107,14 +107,14 @@ public class UserDao extends AbstractDao<User, Long> {
             stmt.bindString(3, sex);
         }
  
-        Long phoneNumber = entity.getPhoneNumber();
-        if (phoneNumber != null) {
-            stmt.bindLong(4, phoneNumber);
+        String phone = entity.getPhone();
+        if (phone != null) {
+            stmt.bindString(4, phone);
         }
  
-        Long updateTime = entity.getUpdateTime();
-        if (updateTime != null) {
-            stmt.bindLong(5, updateTime);
+        Long time = entity.getTime();
+        if (time != null) {
+            stmt.bindLong(5, time);
         }
     }
 
@@ -135,8 +135,8 @@ public class UserDao extends AbstractDao<User, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sex
-            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // phoneNumber
-            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // updateTime
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // phone
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // time
         );
         return entity;
     }
@@ -146,8 +146,8 @@ public class UserDao extends AbstractDao<User, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSex(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setPhoneNumber(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
-        entity.setUpdateTime(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setPhone(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setTime(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
      }
     
     @Override

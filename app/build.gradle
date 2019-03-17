@@ -5,6 +5,15 @@ android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    dataBinding {
+        enabled true
+    }
+
     defaultConfig {
         applicationId 'cn.chenzhongjin.greendao.sample'
         minSdkVersion versions.minSdk
@@ -13,8 +22,7 @@ android {
         versionName versions.name
 
         ndk {
-            //设置支持的SO库架构
-            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
     }
 
@@ -27,32 +35,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testCompile libraries.junit
-    compile 'com.android.support:support-v4:28.0.0'
-    compile libraries.supportAppCompat
-    compile libraries.supportRecyclerView
-    compile libraries.supportCardView
+    testImplementation 'junit:junit:4.12'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:cardview-v7:28.0.0'
 
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.dreamliner.lib:ComponentNet:1.0.0'
 
     implementation 'org.greenrobot:greendao:3.2.2'
 
-    compile libraries.logger
-    compile libraries.eventbus
-
-    compile libraries.superrecyclerview
-    compile libraries.swipelayout
-    compile libraries.materialDialogsCore
-    compile libraries.materialDialogsCommon
-    //compile libraries.pagerslidingtabstrip
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
-    compile libraries.androidSegmented
-    compile libraries.fancybuttons
-    compile libraries.animationsLib
-
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2'
+    implementation 'com.github.medyo:fancybuttons:1.8.3'
 }
 
 greendao {
